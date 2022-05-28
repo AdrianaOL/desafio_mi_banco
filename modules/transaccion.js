@@ -12,9 +12,9 @@ const transaccion = async (newPool) => {
       id1,
     ])
     const descontar = 'UPDATE cuentas SET saldo = saldo + $1 WHERE id = $2'
-    await newPool.client.query(descontar, [saldo, id1])
+    await newPool.client.query(descontar, [saldo, id2])
     const acreditar = 'UPDATE cuentas SET saldo = saldo - $1 WHERE id = $2'
-    await newPool.client.query(acreditar, [saldo, id2])
+    await newPool.client.query(acreditar, [saldo, id1])
     await newPool.client.query('COMMIT')
     console.log(ultimaTRansaccion.rows)
   } catch (e) {
